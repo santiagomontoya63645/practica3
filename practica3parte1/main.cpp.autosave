@@ -4,6 +4,7 @@
 #include <math.h>
 using namespace std;
 //ojo para que funcione bien este codigo debe estar guardado en una carpeta llamada practica3parte1 y esta carpeta debe de tener una carpeta llamada BD
+// para el ingreso del nombre de la funcion debes ser  nombre.txt
 void leer_archivo(char *contenido);
 void convertircadena(int *entero,char *contenido);
 void siste_binario(char *binario,int *entero);
@@ -14,9 +15,9 @@ void deco_metodo2(int);
 
 int main(){
   int opcion=0,semilla=0;
-  char contenido[10000]={};
-  int entero[10000]={};
-  char binario[80000]={};
+  //char contenido[10000]={};
+  //int entero[10000]={};
+ // char binario[80000]={};
  // leer_archivo(contenido);
  // convertircadena(entero,contenido);
  // siste_binario(binario,entero);
@@ -25,7 +26,7 @@ int main(){
   while(opcion!=5){
       cin>>opcion;;
 
-      char contenido[10000]={};
+      char contenido[10000]={};// por si sew requiere hacer mas iteraciones se reinician las variables
       int entero[10000]={};
       char binario[80000]={};
       cout<<"ingrese la semilla con la que quiere codificar o decodificar el archivo: ";
