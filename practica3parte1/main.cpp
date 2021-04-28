@@ -4,69 +4,49 @@
 #include <math.h>
 using namespace std;
 //ojo para que funcione bien este codigo debe estar guardado en una carpeta llamada practica3parte1 y esta carpeta debe de tener una carpeta llamada BD
-void leer_archivo(char *contenido);
+// para el ingreso del nombre de la funcion debes ser  nombre.txt
+void leer_archivo(char *contenido,string nombre_de_entrada);
 void convertircadena(int *entero,char *contenido);
 void siste_binario(char *binario,int *entero);
-void metodo1(char *binario, int );
-void metodo2(char *binario,int );
-void deco_metodo1(int);
-void deco_metodo2(int);
-
+void metodo1(char *binario, int ,string nombre_de_salida);
+void metodo2(char *binario,int ,string nombre_de_salida);
+void deco_metodo1(int,string nombre_de_salida,string nombre_de_entrada);
+void deco_metodo2(int,string nombre_de_salida,string nombre_de_entrada);
+void codificar( int semilla ,int metodo ,string nombre_de_entrada,string nombre_de_salida);
+void decodificar( int semilla ,int metodo ,string nombre_de_entrada,string nombre_de_salida);
 int main(){
   int opcion=0,semilla=0;
-  char contenido[10000]={};
-  int entero[10000]={};
-  char binario[80000]={};
+
+
+  string nombreEntrada={};
+  string nombresalida={};
+  //char contenido[10000]={};
+  //int entero[10000]={};
+ // char binario[80000]={};
  // leer_archivo(contenido);
  // convertircadena(entero,contenido);
  // siste_binario(binario,entero);
 
-  cout<<endl<<"ingrese 1 para el metodo1"<<endl<< "ingrese 2 para el metodo 2."<<endl<<"ingrese 3 para decodificar metodo 1."<<endl<<"ingrese 4 para decodificar metodo 2."<<endl<<"ingrese 5 para salir."<<endl;
-  while(opcion!=5){
-      cin>>opcion;;
 
-      char contenido[10000]={};
-      int entero[10000]={};
-      char binario[80000]={};
+
       cout<<"ingrese la semilla con la que quiere codificar o decodificar el archivo: ";
       cin>>semilla;
-        switch (opcion) {
-        case 1:
+      cout<<"ingrese meodo de codifiacion"<<endl;
+      cin>>opcion;
+      cout<<"ingrese nombre de entrada: "<<endl;
+      cin>> nombreEntrada;
+      cout<<"ingrese nombre de salida: "<<endl;
+      cin>> nombresalida;
+      decodificar(semilla,opcion,nombreEntrada,nombresalida);
 
-             leer_archivo(contenido);
-             convertircadena(entero,contenido);
-             siste_binario(binario,entero);
-             metodo1(binario,semilla);
-             break;
-         case 2:
-             leer_archivo(contenido);
-             convertircadena(entero,contenido);
-             siste_binario(binario,entero);
-             metodo2(binario,semilla);
-             break;
-         case 3:
-            deco_metodo1(semilla);
-            break;
-         case 4:
-            deco_metodo2(semilla);
-            break;
-      }
-      cout<<endl<<"ingrese 1 para el metodo1"<<endl<< "ingrese 2 para el metodo 2."<<endl<<"ingrese 3 para decodificar metodo 1."<<endl<<"ingrese 4 para decodificar metodo 2."<<endl<<"ingrese 5 para salir."<<endl;
-  }
 }
 
-void leer_archivo(char *contenido){
-char nombre_arch[200]={"../practica3parte1/BD/"};
+void leer_archivo(char *contenido,string nombre_de_entrada){
+string nombre_arch="../practica3parte1/BD/" + nombre_de_entrada;
 char linea[10000]={};
 int posicion=0;
-char prueba[200]={};
 int contprueba=0;
-cout<<"ingrese nombre del archivo fuente para codificar: ";
-cin>>prueba;
-while(prueba[contprueba]!='\0') contprueba++;
-for(int i=0;i<=contprueba;i++){
-    nombre_arch[22+i]=prueba[i];
-}
+
 ifstream leer;
          leer.open(nombre_arch);
          if(leer.is_open()){
@@ -130,11 +110,12 @@ void siste_binario(char *binario,int *entero){
              i=iaux;// varaiable que inicia des de primera posicion del numero binario
    }
 }
-void metodo1(char *binario, int semilla){
+void metodo1(char *binario, int semilla,string nombre_de_salida){
     int contador=0,k=0,ceros=0,unos=0,pos=0,pos2=0;
     int cantid_ceros[10000]={};
     int cantid_unos[10000]={};
-    char  salida[200]={"../practica3parte1/BD/"};
+    string  salida="../practica3parte1/BD/"+nombre_de_salida;
+
     char bloques_bits[1000]={};
     char codificado [100000]={};
     char *p=binario;
@@ -215,14 +196,11 @@ void metodo1(char *binario, int semilla){
         pos2++;                //para ingresar a las posiciones de cantidad de ceros y unos
         contador+=semilla;
     }
-     char prueba[200]={};
      int contprueba=0;
-     cout<<"ingrese el nombre del archivo de salida: ";
-     cin>>prueba;
-     while(prueba[contprueba]!='\0') contprueba++;
-     for(int i=0;i<=contprueba;i++){
-         salida[22+i]=prueba[i];
-     }
+   //  while(nombre_de_salida[contprueba]!='\0') contprueba++;
+     //for(int i=0;i<=contprueba;i++){
+       //  salida[22+i]=nombre_de_salida[i];
+     //}
 
      ofstream escribir;
      escribir.open(salida);
@@ -236,13 +214,13 @@ void metodo1(char *binario, int semilla){
      cout<<endl;
    }
 
-void metodo2(char *binario,int semilla){
+void metodo2(char *binario,int semilla,string nombre_de_salida){
     char bloques_bits[20]={};
     char codificado [50000]={};
     char prueba[200]={};
     int contprueba=0;
     int k=0;
-    char salida2[200]={"../practica3parte1/BD/"};
+    string salida2="../practica3parte1/BD/"+nombre_de_salida;
     char *p=binario;
     while (*(p++)!='\0')k++;	//k es la longitud de la cadena
 
@@ -262,14 +240,7 @@ void metodo2(char *binario,int semilla){
             *(codificado+a)=*(bloques_bits+b);
         }
     }
-    cout<<endl<<"ingrese el nombre del archivo de salida: ";
 
-    cout<<"ingrese el nombre del archivo de salida: ";
-    cin>>prueba;
-    while(prueba[contprueba]!='\0') contprueba++;
-    for(int i=0;i<=contprueba;i++){
-        salida2[22+i]=prueba[i];
-    }
     ofstream escribir;
     escribir.open(salida2);
     escribir<<codificado;
@@ -281,18 +252,14 @@ void metodo2(char *binario,int semilla){
 
 }
 
-void deco_metodo1(int semilla){
+void deco_metodo1(int semilla,string nombre_de_salida, string nombre_de_entrada){
     string codificado;
     string decodificado;
     string bloques, nombre;
     int longitud=0,pos=0,contador=0,cantid_ceros=0,cantid_unos=0,i=0;
     string prueba="../practica3parte1/BD/";
-    string auxprueba=prueba;
-    string nombresalida;
-
-    cout<<"ingrese el nombre del archivo codificado: ";
-    cin>>nombre;
-    prueba+=nombre;
+    string auxprueba=prueba+nombre_de_salida;
+    prueba+=nombre_de_entrada;
     ifstream leer;
     leer.open(prueba);
     if(leer.is_open()){
@@ -374,10 +341,6 @@ void deco_metodo1(int semilla){
     }
 
     texto.resize(size/8);//Redefinimos el tamaño del texto donde me quede solo los caracteres ya que hay size/8 caracteres
-    //prueba+="decodificado.txt";
-    cout<<"ingrese nombre del archivo de salida"<<endl;
-    cin>>nombresalida;
-    auxprueba+=nombresalida;
     ofstream escribir;//Enviamos lo decodificado al archivo fuente2.txt
     escribir.open(auxprueba);
     escribir<<texto;
@@ -385,14 +348,12 @@ void deco_metodo1(int semilla){
 }
 
 
-void deco_metodo2(int semilla){
+void deco_metodo2(int semilla,string nombre_de_salida,string nombre_de_entrada){
     string codificado;
-    string bloques, nombre,nombresalida;
+    string bloques, nombre;
     string prueba="../practica3parte1/BD/";
     string auxprueba=prueba;
-    cout<<"ingrese el nombre del archivo codificado: ";
-    cin>>nombre;
-    prueba+=nombre;
+    prueba+=nombre_de_entrada;
     ifstream leer;
     leer.open(prueba);
     if(leer.is_open()){
@@ -436,13 +397,38 @@ void deco_metodo2(int semilla){
    }
 
    texto.resize(size/8);//Redefinimos el tamaño del texto donde me quede solo los caracteres ya que hay size/8 caracteres
-   cout<<"ingrese nombre del archivo de salida"<<endl;
-   cin>>nombresalida;
-   auxprueba+=nombresalida;
+
+   auxprueba+=nombre_de_salida;
    ofstream escribir;//Enviamos lo decodificado al archivo fuente2.txt
    //prueba+="decodificado.txt";
    escribir.open(auxprueba);
    escribir<<texto;
    escribir.close();
 
+}
+void codificar( int semilla ,int metodo ,string nombre_de_entrada,string nombre_de_salida){
+    char contenido[10000]={};// por si sew requiere hacer mas iteraciones se reinician las variables
+    int entero[10000]={};
+    char binario[80000]={};
+    leer_archivo(contenido,nombre_de_entrada);
+    convertircadena(entero,contenido);
+    siste_binario(binario,entero);
+    if (metodo==1){
+        metodo1(binario,semilla,nombre_de_salida);
+    }
+    else{
+        if(metodo==2){
+            metodo2(binario,semilla,nombre_de_salida);
+        }
+    }
+}
+void decodificar( int semilla ,int metodo ,string nombre_de_entrada,string nombre_de_salida){
+    if(metodo==2){
+        deco_metodo2(semilla,nombre_de_salida,nombre_de_entrada);
+    }
+    else{
+        if(metodo==1){
+            deco_metodo1(semilla,nombre_de_salida,nombre_de_entrada);
+        }
+    }
 }
