@@ -9,7 +9,6 @@ void leer_archivo(char *contenido,string nombre_de_entrada){
 string nombre_arch="../practica3parte1/BD/" + nombre_de_entrada;
 char linea[10000]={};
 int posicion=0;
-int contprueba=0;
 
 ifstream leer;
          leer.open(nombre_arch);
@@ -181,8 +180,6 @@ void metodo1(char *binario, int semilla,string nombre_de_salida){
 void metodo2(char *binario,int semilla,string nombre_de_salida){
     char bloques_bits[20]={};
     char codificado [50000]={};
-    char prueba[200]={};
-    int contprueba=0;
     int k=0;
     string salida2="../practica3parte1/BD/"+nombre_de_salida;
     char *p=binario;
