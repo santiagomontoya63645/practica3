@@ -48,7 +48,7 @@ OBJECTS_DIR   = debug
 SOURCES       = ..\practica3parte1\main.cpp 
 OBJECTS       = debug/main.o
 
-DIST          =   ..\practica3parte1\main.cpp
+DIST          =  cod_y_decod.h ..\practica3parte1\main.cpp
 QMAKE_TARGET  = practica3parte1
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = practica3parte1.exe
