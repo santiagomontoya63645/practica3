@@ -5,7 +5,7 @@
 #include "cod_y_decod.h"
 using namespace std;
 //ojo para que funcione bien este codigo y la libreria debe estar guardado en una carpeta llamada practica3parte1 y esta carpeta debe de tener una carpeta llamada BD
-// para el ingreso del nombre de la funcion debes ser  nombre.txt
+// para el ingreso del nombre del archivo debes agregarle la extension en caso de que se llame nombre y es .txt debes ingresar nombre.txt
 // todos los archivos de salida estaran guardados en la carpeta BD que estara dentro de la carpeta practica3parte1
 //tenga en cuenta al momento de decodificar de ingresar el metodo de decodificacion y l asemilla con el que elarchivo se codifico inicialmente
 //si sale el mensaje el archivo no existe es porque te equivocastes en el nombre del archivo de entrad recuerde agregar la extension en qu eeste el archivo
